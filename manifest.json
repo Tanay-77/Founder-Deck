@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "FounderDeck",
+  "version": "1.0.0",
+  "description": "Save founders from LinkedIn and X (Twitter) with one click, then browse them later inside a beautiful dashboard.",
+  "icons": {
+    "128": "dashboard/logo.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.linkedin.com/*",
+    "*://*.twitter.com/*",
+    "*://*.x.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/*",
+        "*://*.twitter.com/*",
+        "*://*.x.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "FounderDeck Dashboard",
+    "default_icon": "dashboard/logo.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dashboard/logo.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
